@@ -13,4 +13,5 @@ import java.lang.annotation.Target;
 public @interface ManyToOne {
     public String relationshipID() default "";
     public String tableName() default "";
+    public String columnName() default "";
 }

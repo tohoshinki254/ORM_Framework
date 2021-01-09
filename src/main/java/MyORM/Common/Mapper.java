@@ -13,7 +13,6 @@ import MyORM.Annotations.Table;
 import MyORM.Exceptions.MapDataException;
 
 public abstract class Mapper {
-
     public <T> T mapWithoutRelationship(ResultSet rs, Class<T> entityClass) {
         try {
             T object = entityClass.getDeclaredConstructor().newInstance();
