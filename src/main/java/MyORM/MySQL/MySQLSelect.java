@@ -9,7 +9,12 @@ import MyORM.Common.Query.Where;
 
 public class MySQLSelect<T> extends MySQLQuery implements Where<T>, HavingOrRun<T>, GroupBy<T>, Run<T> {
     public MySQLSelect(MySQLConnection cnt, String connectionString, Class<T> entityClass) {
-        super(cnt, connectionString, entityClass);
+        MySQLMapper mapper = new MySQLMapper();
+        StringBuilder sb = new StringBuilder("");
+        sb.append("SELECT");
+        for (String column : mapper.GetColumns(entityClass)) {
+            
+        }
     }
 
     public MySQLSelect(MySQLConnection cnt, String connectionString, String query, Class<T> entityClass) {

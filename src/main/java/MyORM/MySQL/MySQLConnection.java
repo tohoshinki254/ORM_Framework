@@ -53,17 +53,18 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> List<T> executeQuery(String query) {
+    public <T> List<T> executeQuery(String strQuery, Class<T> entityClass) {
+        MySQLQuery query = new MySQLQuery(cnt, connectionString, strQuery);
+        return query.executeQuery(entityClass);
+    }
+
+    @Override
+    public <T> List<T> executeQueryWithoutRelationship(String strQuery, Class<T> entityClass) {
         return null;
     }
 
     @Override
-    public <T> List<T> executeQueryWithoutRelationship(String query) {
-        return null;
-    }
-
-    @Override
-    public <T> int executeNonQuery(String query) {
+    public <T> int executeNonQuery(String strQuery, Class<T> entityClass) {
         return 0;
     }
 

@@ -1,26 +1,43 @@
 package MyORM.MySQL;
 
 import java.util.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import MyORM.Common.Query.Query;
 
 public class MySQLQuery implements Query {
-    protected String connectionString;
-    protected Statement statement;
+    protected String connectString;
     protected String query;
+    protected java.sql.Connection cnt;
 
-    public <T> MySQLQuery(MySQLConnection cnt, String connectionString, Class<T> entityClass) {
-        this.connectionString = connectionString;
+    public <T> MySQLQuery(java.sql.Connection cnt, String connectionString) {
+        this.cnt = cnt;
+        this.connectString = connectionString;
     }
 
-    public <T> MySQLQuery(MySQLConnection cnt, String connectionString, String query, Class<T> entityClass) {
-        this.connectionString = connectionString;
+    public <T> MySQLQuery(java.sql.Connection cnt, String connectionString, String query) {
         this.query = query;
+        this.connectString = connectionString;
+        this.cnt = cnt;
     }
 
     public <T> List<T> executeQuery(Class<T> entityClass) {
-        return null;
+        List<T> res = new ArrayList<T>();
+        try {
+            MySQLMapper mapper = new MySQLMapper();
+            MySQLConnection con = new MySQLConnection(connectString);
+            Statement statement = cnt.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(mapper.mapWithRelationship(con, rs, entityClass));
+            }
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Override
