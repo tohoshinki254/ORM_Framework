@@ -13,5 +13,5 @@ import MyORM.Common.DataType;
 @Target({ElementType.FIELD})
 public @interface Column {
     public String name() default "";
-    public DataType type() default DataType.VARCHAR;
+    // public DataType type() default DataType.VARCHAR;
 }

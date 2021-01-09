@@ -9,11 +9,11 @@ public abstract class Connection {
 
     public abstract void open();
     public abstract void close();
-    public abstract Where<Object> select();
-    public abstract int insert(Object obj);
-    public abstract int update(Object obj);
-    public abstract int delete(Object obj);
-    public abstract List<Object> executeQuery(String query);
-    public abstract List<Object> executeQueryWithoutRelationship(String query);
+    public abstract <T> Where<T> select();
+    public abstract <T> int insert(T obj);
+    public abstract <T> int update(T obj);
+    public abstract <T> int delete(T obj);
+    public abstract <T> List<T> executeQuery(String query);
+    public abstract <T> List<T> executeQueryWithoutRelationship(String query);
     public abstract int executeNonQuery(String query);
 }
