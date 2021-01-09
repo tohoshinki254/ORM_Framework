@@ -7,14 +7,8 @@ import java.lang.reflect.Field;
 import MyORM.Annotations.PrimaryKey;
 import MyORM.Annotations.Table;
 
-public abstract class Mapper<T> {
-    public Class<T> entityClass;
-
-    public Mapper(Class<T> entityClass) {
-        this.entityClass = entityClass;
-    }
-
-    public String getTableName() {
+public abstract class Mapper {
+    public <T> String getTableName(Class<T> entityClass) {
         try {
             Table anno = entityClass.getAnnotation(Table.class);
             if (anno != null) {
@@ -28,7 +22,7 @@ public abstract class Mapper<T> {
         return "";
     }
 
-    public List<String> getPrimaryKey() {
+    public <T> List<String> getPrimaryKey(Class<T> entityClass) {
         List<String> primaryKey = new ArrayList<String>();
 
         Field[] attributes = entityClass.getDeclaredFields();

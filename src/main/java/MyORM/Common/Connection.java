@@ -15,5 +15,5 @@ public abstract class Connection {
     public abstract <T> int delete(T obj);
     public abstract <T> List<T> executeQuery(String query);
     public abstract <T> List<T> executeQueryWithoutRelationship(String query);
-    public abstract int executeNonQuery(String query);
+    public abstract <T> int executeNonQuery(String query);
 }

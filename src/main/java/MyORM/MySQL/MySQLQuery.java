@@ -5,34 +5,31 @@ import java.sql.Statement;
 
 import MyORM.Common.Query.Query;
 
-public class MySQLQuery<T> implements Query {
+public class MySQLQuery implements Query {
     protected String connectionString;
     protected Statement statement;
     protected String query;
-    protected Class<T> entityClass;
 
-    public MySQLQuery(MySQLConnection cnt, String connectionString, Class<T> entityClass) {
+    public <T> MySQLQuery(MySQLConnection cnt, String connectionString, Class<T> entityClass) {
         this.connectionString = connectionString;
-        this.entityClass = entityClass;
     }
 
-    public MySQLQuery(MySQLConnection cnt, String connectionString, String query, Class<T> entityClass) {
+    public <T> MySQLQuery(MySQLConnection cnt, String connectionString, String query, Class<T> entityClass) {
         this.connectionString = connectionString;
         this.query = query;
-        this.entityClass = entityClass;
     }
 
-    public List<T> executeQuery() {
+    public <T> List<T> executeQuery(Class<T> entityClass) {
         return null;
     }
 
     @Override
-    public List<T> executeQueryWithoutRelationship() {
+    public <T> List<T> executeQueryWithoutRelationship(Class<T> entityClass) {
         return null;
     }
 
     @Override
-    public int executeNonQuery() {
+    public <T> int executeNonQuery(Class<T> entityClass) {
         return 0;
     }
 }   

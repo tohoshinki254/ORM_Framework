@@ -1,69 +1,70 @@
 package MyORM.MySQL;
 
+import java.sql.DriverManager;
 import java.util.List;
 
 import MyORM.Common.Connection;
 import MyORM.Common.Query.Where;
 
 public class MySQLConnection extends Connection {
-    private String connectionString;
+    java.sql.Connection cnt;
 
-    public MySQLConnection(String connectionString) {
-        this.connectionString = connectionString;
+    public MySQLConnection(String strConnection) {
+        connectionString = strConnection;
     }
 
     @Override
     public void open() {
-        // TODO Auto-generated method stub
-        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            cnt = DriverManager.getConnection(connectionString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void close() {
-        // TODO Auto-generated method stub
-
+        try {
+            cnt.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public <T> Where<T> select() {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public <T> int insert(T obj) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public <T> int update(T obj) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public <T> int delete(T obj) {
-        // TODO Auto-generated method stub
         return 0;
     }
 
     @Override
     public <T> List<T> executeQuery(String query) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public <T> List<T> executeQueryWithoutRelationship(String query) {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public int executeNonQuery(String query) {
-        // TODO Auto-generated method stub
+    public <T> int executeNonQuery(String query) {
         return 0;
     }
-    
+
 }
