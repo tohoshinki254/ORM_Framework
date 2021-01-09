@@ -48,8 +48,8 @@ public abstract class Mapper {
         return obj;
     }
 
-    protected abstract <T> void mapOneToMany(Connection con, ResultSet rs, Class<T> entityClass);
-    protected abstract <T> void mapManyToOne(Connection con, ResultSet rs, Class<T> entityClass);
+    protected abstract <T> void mapOneToMany(Connection con, ResultSet rs, T obj);
+    protected abstract <T> void mapManyToOne(Connection con, ResultSet rs, T obj);
 
     public <T> String getTableName(Class<T> entityClass) {
         try {
