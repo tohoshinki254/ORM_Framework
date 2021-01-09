@@ -43,7 +43,8 @@ public abstract class Mapper {
 
         //Map all column annotation
         T obj = mapWithoutRelationship(rs, entityClass);
-
+        mapManyToOne(con, rs, obj);
+        mapOneToMany(con, rs, obj);
         return obj;
     }
 

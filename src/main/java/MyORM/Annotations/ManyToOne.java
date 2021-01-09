@@ -11,7 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface ManyToOne {
-    public String relationshipID() default "";
     public String tableName() default "";
+    public String refColumn() default "";
     public String columnName() default "";
 }
