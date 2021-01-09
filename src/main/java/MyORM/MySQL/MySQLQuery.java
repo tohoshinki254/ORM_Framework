@@ -42,11 +42,29 @@ public class MySQLQuery implements Query {
 
     @Override
     public <T> List<T> executeQueryWithoutRelationship(Class<T> entityClass) {
-        return null;
+        List<T> res = new ArrayList<T>();
+        try {
+            MySQLMapper mapper = new MySQLMapper();
+            Statement statement = cnt.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(mapper.mapWithoutRelationship(rs, entityClass));
+            }
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Override
     public <T> int executeNonQuery(Class<T> entityClass) {
+        try {
+            Statement statement = cnt.createStatement();
+            return statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }   
