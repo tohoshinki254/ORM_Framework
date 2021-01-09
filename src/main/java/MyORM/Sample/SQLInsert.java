@@ -8,7 +8,7 @@ import MyORM.MySQL.MySQLQuery;
 
 public class SQLInsert<T> extends MySQLQuery {
     public SQLInsert(Connection connection, String connectionString, T object) {
-        super(connection, connectionString);
+        // super(connection, connectionString);
 
         SqlMapper<T> mapper = new SqlMapper<>();
         String tableName = mapper.getTableName<T>();  
