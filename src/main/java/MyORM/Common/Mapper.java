@@ -71,8 +71,17 @@ public abstract class Mapper {
         for (Field field: fields) {
             Annotation[] attributes = field.getAnnotations();
             for(Annotation annotation: attributes) {
-                if (annotation.annotationType() == Column.class) {
-                    listColumnValues.put(field.getName(), field.get(obj));
+                if (annotation.annotationType() == Column.class || annotation.annotationType() ==  PrimaryKey.class) {
+                    if(annotation.annotationType() == Column.class)
+                    {
+                        listColumnValues.put(field.getAnnotation(Column.class).name(), field.get(obj));
+                        System.out.println(field.getAnnotation(Column.class).name());
+                    }
+                    else
+                    {
+                        listColumnValues.put(field.getAnnotation(PrimaryKey.class).name(), field.get(obj));
+                        System.out.println(field.getAnnotation(PrimaryKey.class).name());
+                    }
                 }
             }
         } 
@@ -105,17 +114,21 @@ public abstract class Mapper {
         Field[] fields = entityClass.getDeclaredFields();
         
         
-        for(int i = 0;i<fields.length;i++)
-        {
-            Annotation[] annotations = fields[i].getAnnotations();
-            for(int j = 0;j<annotations.length;j++)
-            {
-                if(annotations[i].annotationType() == Column.class);
-                {
-                    listColumn.add(fields[i].getName());
+        for (Field field: fields) {
+            Annotation[] attributes = field.getAnnotations();
+            for(Annotation annotation: attributes) {
+                if (annotation.annotationType() == Column.class || annotation.annotationType() ==  PrimaryKey.class) {
+                    if(annotation.annotationType() == Column.class)
+                    {
+                        listColumn.add(field.getAnnotation(Column.class).name());
+                    }
+                    else
+                    {
+                        listColumn.add(field.getAnnotation(PrimaryKey.class).name());
+                    }
                 }
-            }            
-        }
+            }
+        } 
         return listColumn;
     }
 

@@ -11,8 +11,8 @@ public abstract class Connection {
     public abstract void close();
     public abstract <T> Where<T> select();
     public abstract <T> int insert(T obj);
-    public abstract <T> int update(T obj);
-    public abstract <T> int delete(T obj);
+    public abstract <T> int update(T obj, Class<T> entityClass) throws Exception;
+    public abstract <T> int delete(T obj, Class<T> entityClass) throws Exception;
     public abstract <T> List<T> executeQuery(String strQuery, Class<T> entityClass);
     public abstract <T> List<T> executeQueryWithoutRelationship(String strQuery, Class<T> entityClass);
     public abstract <T> int executeNonQuery(String strQuery, Class<T> entityClass);
