@@ -33,36 +33,19 @@ public class MySQLInsert<T> extends MySQLQuery {
             PrimaryKey primaryKey = field.getAnnotation(PrimaryKey.class);
 
             if (primaryKey != null) {
+                //* If primary key is autoID, no need to add the key + value
                 if (primaryKey.autoId()) {
                     isAutoID = true;
                     continue;
                 }
             }
-            if ((column != null || primaryKey != null) && !isAutoID) {
-                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SS");
-                
+
+            //* In each column, add key (column name) and its value
+            if ((column != null || primaryKey != null) && !isAutoID) {                
                 columnStringbuilder.append(String.format("%s, ", column.name()));
-                // if (listColumnValues.get(column).getClass() == Date.class)
                 valueStringBuilder.append(String.format("'%s', ", listColumnValues.get(field.getName())));
             }
         }
- 
-
-        // for (String column : listColumnValues.keySet()) {
-        //     boolean isAutoID = false;
-
-        //     // Check primary key --> if true & id is auto --> no need to add key-value
-        //     for ( primaryKey : primaryKeys) {
-
-
-        //         if (column == primaryKey.name() && primaryKey.autoId()) {
-        //             isAutoID = true;
-        //             break;
-        //         }
-        //     }
-
-           
-        // }
 
         if (!columnStringbuilder.toString().equals("") && !valueStringBuilder.toString().equals("")) {
             // Remove the last 2 letters ", "
