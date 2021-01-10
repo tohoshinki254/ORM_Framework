@@ -63,7 +63,7 @@ public class MySQLQuery implements Query {
             Statement statement = cnt.createStatement();
             return statement.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Error: " + e.getMessage());
         }
         return 0;
     }

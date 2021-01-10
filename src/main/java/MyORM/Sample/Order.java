@@ -1,6 +1,6 @@
 package MyORM.Sample;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import MyORM.Annotations.Column;
@@ -11,21 +11,28 @@ import MyORM.Annotations.Table;
 @Table(name = "orders")
 public class Order {
     @PrimaryKey(name = "id", autoId = true)
-    private Long id;
+    public Long id;
 
     @Column(name = "created_at")
-    private Date createdAt;
+    public Date createdAt;
 
     @Column(name = "total")
-    private int total;
+    public int total;
 
     @Column(name = "status")
-    private String status;
+    public String status;
 
     @OneToMany(tableName = "products", joinColumn = "order_id")
-    private List<Product> products;
+    public List<Product> products;
 
-    public Long getId() {
+    public Order(Long i, Date now, int k, String string) {
+        id = i;
+        createdAt = now;
+        total = k;
+        status = string;
+	}
+
+	public Long getId() {
         return id;
     }
 

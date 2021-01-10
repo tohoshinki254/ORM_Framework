@@ -8,13 +8,13 @@ import MyORM.Annotations.Table;
 @Table(name = "products")
 public class Product {
     @PrimaryKey(name = "id")
-    private Long id;
+    public Long id;
 
     @Column(name = "name")
-    private String name;
+    public String name;
 
     @Column(name = "price")
-    private Integer price;
+    public Integer price;
 
     @ManyToOne(tableName = "orders", refColumn = "id", columnName = "order_id")
     private Order order;

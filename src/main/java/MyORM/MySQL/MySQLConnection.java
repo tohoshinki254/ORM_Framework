@@ -38,18 +38,33 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> int insert(T obj) {
+    public <T> int insert(T obj, Class<T> entityClass) {
+        try {
+        MySQLInsert query = new MySQLInsert(cnt, connectionString, entityClass, obj);
+        return query.executeNonQuery(entityClass);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
     @Override
-    public <T> int update(T obj) {
-        return 0;
+    public <T> int update(T obj, Class<T> entityClass) throws Exception {
+        MySQLUpdate myUpdate = new MySQLUpdate(cnt, connectionString, entityClass, obj);
+        return myUpdate.executeNonQuery(entityClass);
     }
 
     @Override
-    public <T> int delete(T obj) {
-        return 0;
+    public <T> int delete(T obj, Class<T> entityClass){
+        try{
+            MySQLDelete myDelete = new MySQLDelete(cnt, connectionString, entityClass, obj);
+            return myDelete.executeNonQuery(entityClass);
+        }
+        catch(Exception e){
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     @Override

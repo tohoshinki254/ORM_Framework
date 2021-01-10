@@ -13,10 +13,6 @@ public class MySQLSelect extends MySQLQuery implements Where, Run, GroupByOrRun,
         MySQLMapper mapper = new MySQLMapper();
         StringBuilder sb = new StringBuilder();
         sb.append("SELECT");
-        // for (String column : mapper.GetColumns(entityClass)) {
-        //     sb.append(String.format(" %s,", column));
-        // }
-        // sb.substring(0, sb.length() - 1);
         sb.append(String.format(" * FROM %s", mapper.getTableName(entityClass)));
         query = sb.toString();
     }
