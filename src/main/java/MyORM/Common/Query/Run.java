@@ -2,6 +2,6 @@ package MyORM.Common.Query;
 
 import java.util.*;
 
-public interface Run<T> {
-    List<T> run();
+public interface Run {
+    <T> List<T> run(Class<T> entityClass);
 }

@@ -2,7 +2,7 @@ package MyORM.Common.Query;
 
 import java.util.*;
 
-public interface HavingOrRun<T> {
-    GroupBy<T> having(String condition);
-    List<T> run();
+public interface HavingOrRun {
+    <T> GroupBy having(String condition);
+    <T> List<T> run(Class<T> entityClass);
 }

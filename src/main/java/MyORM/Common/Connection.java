@@ -9,7 +9,7 @@ public abstract class Connection {
 
     public abstract void open();
     public abstract void close();
-    public abstract <T> Where<T> select();
+    public abstract <T> Where select();
     public abstract <T> int insert(T obj);
     public abstract <T> int update(T obj);
     public abstract <T> int delete(T obj);

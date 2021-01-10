@@ -33,7 +33,7 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> Where<T> select() {
+    public <T> Where select() {
         return null;
     }
 
