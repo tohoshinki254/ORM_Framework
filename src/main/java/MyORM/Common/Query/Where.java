@@ -1,6 +1,6 @@
 package MyORM.Common.Query;
 
 public interface Where {
-    <T> HavingOrRun where(String condition);
-    <T> HavingOrRun all();
+    <T> GroupByOrRun where(String condition);
+    <T> GroupByOrRun all();
 }

@@ -33,8 +33,8 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> Where select() {
-        return null;
+    public <T> Where select(Class<T> entityClass) {
+        return MySQLSelect.create(cnt, connectionString, entityClass);
     }
 
     @Override
@@ -69,5 +69,4 @@ public class MySQLConnection extends Connection {
         MySQLQuery query = new MySQLQuery(cnt, connectionString, strQuery);
         return query.executeNonQuery(entityClass);
     }
-
 }

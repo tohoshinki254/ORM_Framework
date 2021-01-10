@@ -56,7 +56,6 @@ public abstract class Mapper {
             Table anno = entityClass.getAnnotation(Table.class);
             if (anno != null) {
                 String className = anno.name();
-                System.out.println(anno);
                 return className;
             }
         } catch (Exception e) {
@@ -110,9 +109,10 @@ public abstract class Mapper {
             Annotation[] annotations = fields[i].getAnnotations();
             for(int j = 0;j<annotations.length;j++)
             {
-                if(annotations[i].annotationType() == Column.class);
+                if(annotations[j].annotationType() == Column.class);
                 {
                     listColumn.add(fields[i].getName());
+                    break;
                 }
             }            
         }
