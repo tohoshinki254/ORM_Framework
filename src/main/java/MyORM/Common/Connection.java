@@ -10,7 +10,7 @@ public abstract class Connection {
     public abstract void open();
     public abstract void close();
     public abstract <T> Where<T> select();
-    public abstract <T> int insert(T obj);
+    public abstract <T> int insert(T obj, Class<T> entityClass);
     public abstract <T> int update(T obj);
     public abstract <T> int delete(T obj);
     public abstract <T> List<T> executeQuery(String strQuery, Class<T> entityClass);

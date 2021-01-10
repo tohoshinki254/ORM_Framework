@@ -71,7 +71,7 @@ public abstract class Mapper {
         for (Field field: fields) {
             Annotation[] attributes = field.getAnnotations();
             for(Annotation annotation: attributes) {
-                if (annotation.annotationType() == Column.class) {
+                if (annotation.annotationType() == Column.class || annotation.annotationType() == PrimaryKey.class) {
                     listColumnValues.put(field.getName(), field.get(obj));
                 }
             }
@@ -110,7 +110,7 @@ public abstract class Mapper {
             Annotation[] annotations = fields[i].getAnnotations();
             for(int j = 0;j<annotations.length;j++)
             {
-                if(annotations[i].annotationType() == Column.class);
+                if(annotations[j].annotationType() == Column.class || annotations[j].annotationType() == Column.class)
                 {
                     listColumn.add(fields[i].getName());
                 }

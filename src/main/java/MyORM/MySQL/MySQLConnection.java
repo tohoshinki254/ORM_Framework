@@ -38,7 +38,14 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> int insert(T obj) {
+    public <T> int insert(T obj, Class<T> entityClass) {
+        try {
+        MySQLInsert<T> query = new MySQLInsert<>(cnt, connectionString, entityClass, obj);
+        return query.executeNonQuery(entityClass);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 
