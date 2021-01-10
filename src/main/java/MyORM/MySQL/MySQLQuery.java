@@ -1,38 +1,70 @@
 package MyORM.MySQL;
 
 import java.util.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import MyORM.Common.Query.Query;
 
-public class MySQLQuery<T> implements Query {
-    protected String connectionString;
-    protected Statement statement;
+public class MySQLQuery implements Query {
+    protected String connectString;
     protected String query;
-    protected Class<T> entityClass;
+    protected java.sql.Connection cnt;
 
-    public MySQLQuery(MySQLConnection cnt, String connectionString, Class<T> entityClass) {
-        this.connectionString = connectionString;
-        this.entityClass = entityClass;
+    public <T> MySQLQuery(java.sql.Connection cnt, String connectionString) {
+        this.cnt = cnt;
+        this.connectString = connectionString;
     }
 
-    public MySQLQuery(MySQLConnection cnt, String connectionString, String query, Class<T> entityClass) {
-        this.connectionString = connectionString;
+    public <T> MySQLQuery(java.sql.Connection cnt, String connectionString, String query) {
         this.query = query;
-        this.entityClass = entityClass;
+        this.connectString = connectionString;
+        this.cnt = cnt;
     }
 
-    public List<T> executeQuery() {
-        return null;
+    public <T> List<T> executeQuery(Class<T> entityClass) {
+        List<T> res = new ArrayList<T>();
+        try {
+            MySQLMapper mapper = new MySQLMapper();
+            MySQLConnection con = new MySQLConnection(connectString);
+            Statement statement = cnt.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(mapper.mapWithRelationship(con, rs, entityClass));
+            }
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Override
-    public List<T> executeQueryWithoutRelationship() {
-        return null;
+    public <T> List<T> executeQueryWithoutRelationship(Class<T> entityClass) {
+        List<T> res = new ArrayList<T>();
+        try {
+            MySQLMapper mapper = new MySQLMapper();
+            Statement statement = cnt.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                res.add(mapper.mapWithoutRelationship(rs, entityClass));
+            }
+            return res;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return res;
     }
 
     @Override
-    public int executeNonQuery() {
+    public <T> int executeNonQuery(Class<T> entityClass) {
+        try {
+            Statement statement = cnt.createStatement();
+            return statement.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return 0;
     }
 }   
