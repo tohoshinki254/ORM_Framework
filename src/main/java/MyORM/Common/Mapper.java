@@ -43,12 +43,13 @@ public abstract class Mapper {
 
         //Map all column annotation
         T obj = mapWithoutRelationship(rs, entityClass);
-
+        mapManyToOne(con, rs, obj);
+        mapOneToMany(con, rs, obj);
         return obj;
     }
 
-    protected abstract <T> void mapOneToMany(Connection con, ResultSet rs, Class<T> entityClass);
-    protected abstract <T> void mapManyToOne(Connection con, ResultSet rs, Class<T> entityClass);
+    protected abstract <T> void mapOneToMany(Connection con, ResultSet rs, T obj);
+    protected abstract <T> void mapManyToOne(Connection con, ResultSet rs, T obj);
 
     public <T> String getTableName(Class<T> entityClass) {
         try {
