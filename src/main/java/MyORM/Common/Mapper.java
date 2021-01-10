@@ -71,7 +71,14 @@ public abstract class Mapper {
             Annotation[] attributes = field.getAnnotations();
             for(Annotation annotation: attributes) {
                 if (annotation.annotationType() == Column.class || annotation.annotationType() == PrimaryKey.class) {
-                    listColumnValues.put(field.getName(), field.get(obj));
+                    if(annotation.annotationType() == Column.class)
+                    {
+                        listColumnValues.put(field.getAnnotation(Column.class).name(), field.get(obj));
+                    }
+                    else
+                    {
+                        listColumnValues.put(field.getAnnotation(PrimaryKey.class).name(), field.get(obj));
+                    }
                 }
             }
         } 
