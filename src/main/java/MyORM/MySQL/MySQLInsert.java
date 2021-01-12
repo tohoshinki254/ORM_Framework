@@ -15,7 +15,7 @@ public class MySQLInsert extends MySQLQuery {
         MySQLMapper mySQLMapper = new MySQLMapper();
 
         String tableName = mySQLMapper.getTableName(entityClass);
-        
+
         HashMap<String, Object> listColumnValues = mySQLMapper.getColumnValues(obj);
 
         StringBuilder columnStringbuilder = new StringBuilder("");
@@ -24,22 +24,23 @@ public class MySQLInsert extends MySQLQuery {
         Field[] fields = entityClass.getDeclaredFields();
 
         for (Field field : fields) {
-            boolean isAutoID = false; 
+            boolean isAutoID = false;
             Column column = field.getAnnotation(Column.class);
             PrimaryKey primaryKey = field.getAnnotation(PrimaryKey.class);
 
             if (primaryKey != null) {
-                //* If primary key is autoID, no need to add the key + value
+                // * If primary key is autoID, no need to add the key + value
                 if (primaryKey.autoId()) {
                     isAutoID = true;
                     continue;
                 }
             }
 
-            //* In each column, add key (column name) and its value
-            if ((column != null || primaryKey != null) && !isAutoID) {                
+            // * In each column, add key (column name) and its value
+            if ((column != null || primaryKey != null) && !isAutoID) {
                 columnStringbuilder.append(String.format("%s, ", column.name()));
-                valueStringBuilder.append(String.format("'%s', ", listColumnValues.get(field.getName())));
+                String name = primaryKey != null ? primaryKey.name() : column.name();
+                valueStringBuilder.append(String.format("'%s', ", listColumnValues.get(name)));
             }
         }
 

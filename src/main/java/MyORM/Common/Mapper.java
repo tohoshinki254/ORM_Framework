@@ -35,6 +35,7 @@ public abstract class Mapper {
 
             return object;
         } catch (Exception e) {
+            e.printStackTrace();
             throw new MapDataException(e.getMessage());
         }
     }
