@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.util.HashMap;
 
 import MyORM.Annotations.Column;
+import MyORM.Annotations.ManyToOne;
 import MyORM.Annotations.PrimaryKey;
+import MyORM.Exceptions.MapDataException;
 
 public class MySQLInsert extends MySQLQuery {
 
@@ -27,6 +29,7 @@ public class MySQLInsert extends MySQLQuery {
             boolean isAutoID = false;
             Column column = field.getAnnotation(Column.class);
             PrimaryKey primaryKey = field.getAnnotation(PrimaryKey.class);
+            ManyToOne foreignKey = field.getAnnotation(ManyToOne.class);
 
             if (primaryKey != null) {
                 // * If primary key is autoID, no need to add the key + value
@@ -36,10 +39,20 @@ public class MySQLInsert extends MySQLQuery {
                 }
             }
 
-            // * In each column, add key (column name) and its value
-            if ((column != null || primaryKey != null) && !isAutoID) {
-                columnStringbuilder.append(String.format("%s, ", column.name()));
-                String name = primaryKey != null ? primaryKey.name() : column.name();
+            // * In each column (including primaryKey & foreignKey), add key (column name) and its value
+            if (!isAutoID) {
+                String name;
+                if (primaryKey != null) {
+                    name = primaryKey.name();
+                } else if (column != null) {
+                    name = column.name();
+                } else if (foreignKey != null) {
+                    name = foreignKey.columnName();
+                } else {
+                    continue;
+                }
+
+                columnStringbuilder.append(String.format("%s, ", name));
                 valueStringBuilder.append(String.format("'%s', ", listColumnValues.get(name)));
             }
         }
