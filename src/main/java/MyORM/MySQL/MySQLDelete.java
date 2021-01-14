@@ -27,16 +27,6 @@ public class MySQLDelete extends MySQLQuery{
                     }
                 }
             }
-        // for(String column:primaryKey)
-        // {
-        //     {
-        //         if(mapper.FindColumn(column, listColumnValue))
-        //         {
-        //             String format = "%s = '%s', ";
-        //             whereStr.append(String.format(format, column, listColumnValue.get(column)));
-        //         }
-        //     }
-        // }
         String valueWhereStr = "";
         if(whereStr.length()!=0)
         {

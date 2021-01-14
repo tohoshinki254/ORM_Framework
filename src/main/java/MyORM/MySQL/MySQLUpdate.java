@@ -40,14 +40,6 @@ public class MySQLUpdate extends MySQLQuery {
                     }
                 }
             }
-            // for(String column:primaryKey)
-            // {
-            // if(mapper.FindColumn(column, listColumnValue))
-            // {
-            // String format = "%s = '%s', ";
-            // whereStr.append(String.format(format, column, listColumnValue.get(column)));
-            // }
-            // }
             if (whereStr.length() != 0) {
                 valueWhereStr = whereStr.substring(0, whereStr.length() - 2);
                 query = String.format("Update %s Set %s Where %s", tableName, valueSetStr, valueWhereStr);
