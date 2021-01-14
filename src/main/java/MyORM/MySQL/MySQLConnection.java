@@ -1,6 +1,7 @@
 package MyORM.MySQL;
 
 import java.sql.DriverManager;
+import java.util.HashMap;
 import java.util.List;
 
 import MyORM.Common.Connection;
@@ -50,15 +51,15 @@ public class MySQLConnection extends Connection {
     }
 
     @Override
-    public <T> int update(T obj, Class<T> entityClass) throws Exception {
-        MySQLUpdate myUpdate = new MySQLUpdate(cnt, connectionString, entityClass, obj);
+    public <T> int update(HashMap<String, Object> prototype, Class<T> entityClass, String whereQuery) throws Exception {
+        MySQLUpdate myUpdate = new MySQLUpdate(cnt, connectionString, entityClass, prototype, whereQuery);
         return myUpdate.executeNonQuery(entityClass);
     }
 
     @Override
-    public <T> int delete(T obj, Class<T> entityClass){
+    public <T> int delete(Class<T> entityClass, String whereQuery){
         try{
-            MySQLDelete myDelete = new MySQLDelete(cnt, connectionString, entityClass, obj);
+            MySQLDelete myDelete = new MySQLDelete(cnt, connectionString, entityClass, whereQuery);
             return myDelete.executeNonQuery(entityClass);
         }
         catch(Exception e){
