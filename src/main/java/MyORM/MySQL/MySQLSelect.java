@@ -8,6 +8,8 @@ import MyORM.Common.Query.Run;
 import MyORM.Common.Query.Where;
 
 public class MySQLSelect extends MySQLQuery implements Where, Run, GroupByOrRun, HavingOrRun {
+    private static MySQLSelect instance = null;
+    private static Class mEntityClass = null;
     private <T> MySQLSelect(java.sql.Connection cnt, String connectionString, Class<T> entityClass) {
         super(cnt, connectionString);
         MySQLMapper mapper = new MySQLMapper();
@@ -18,7 +20,13 @@ public class MySQLSelect extends MySQLQuery implements Where, Run, GroupByOrRun,
     }
 
     public static <T> Where create(java.sql.Connection cnt, String connectionString, Class<T> entityClass) {
-        return new MySQLSelect(cnt, connectionString, entityClass);
+        if(instance == null || mEntityClass != entityClass)
+        {
+            instance = new MySQLSelect(cnt, connectionString, entityClass);
+            mEntityClass = entityClass;
+        }
+
+        return instance;
     }
 
     @Override
