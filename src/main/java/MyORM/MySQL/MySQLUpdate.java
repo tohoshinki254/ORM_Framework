@@ -3,7 +3,6 @@ package MyORM.MySQL;
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.util.HashMap;
-import java.util.List;
 
 import MyORM.Annotations.Column;
 import MyORM.Annotations.ManyToOne;
@@ -47,7 +46,7 @@ public class MySQLUpdate extends MySQLQuery {
                     }
 
                     Object foreignKeyObj = listColumnValue.get(columnName);
-                    Class foreignKeyClass = foreignKeyObj.getClass();
+                    Class<?> foreignKeyClass = foreignKeyObj.getClass();
                     Field[] foreignKeyFields = foreignKeyClass.getDeclaredFields();
 
                     HashMap<String, Object> foreignColumnValues = mapper.getColumnValues(foreignKeyObj);

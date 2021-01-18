@@ -9,7 +9,7 @@ import MyORM.Common.Query.Where;
 
 public class MySQLSelect extends MySQLQuery implements Where, Run, GroupByOrRun, HavingOrRun {
     private static MySQLSelect instance = null;
-    private static Class mEntityClass = null;
+    private static Class<?> mEntityClass = null;
     private <T> MySQLSelect(java.sql.Connection cnt, String connectionString, Class<T> entityClass) {
         super(cnt, connectionString);
         MySQLMapper mapper = new MySQLMapper();

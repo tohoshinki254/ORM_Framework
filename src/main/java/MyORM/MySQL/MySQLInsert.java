@@ -7,7 +7,6 @@ import java.util.HashMap;
 import MyORM.Annotations.Column;
 import MyORM.Annotations.ManyToOne;
 import MyORM.Annotations.PrimaryKey;
-import MyORM.Exceptions.MapDataException;
 
 public class MySQLInsert extends MySQLQuery {
 
