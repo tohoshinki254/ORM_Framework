@@ -2,11 +2,18 @@ package MyORM.Common.Query.WhereComponentQuery;
 
 public class MySQLOperationMoreThan implements MySQLWhereComponent{
     String objName;
-    Double number;
+    Object obj;
 
     @Override
     public String getComponentString() {
-        return objName + " > " + number;
+        return objName + " > " + obj.toString();
     }
+
+    public MySQLOperationMoreThan(String objName, Object obj) {
+        this.objName = objName;
+        this.obj = obj;
+    }
+
+    
     
 }
