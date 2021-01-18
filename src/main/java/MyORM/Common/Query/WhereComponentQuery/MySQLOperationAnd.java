@@ -1,21 +1,19 @@
 package MyORM.Common.Query.WhereComponentQuery;
 
-public class MySQLOperationAnd implements MySQLWhereComponent {
+import MyORM.Common.Query.WhereComponent;
 
-    MySQLWhereComponent component1;
-    MySQLWhereComponent component2;
+public class MySQLOperationAnd implements WhereComponent {
 
-
-   
+    WhereComponent component1;
+    WhereComponent component2;
 
 	@Override
     public String getComponentString() {
         return "(" + component1.getComponentString() + " AND " + component2.getComponentString() + ")"; 
     }
 
-    public MySQLOperationAnd(MySQLWhereComponent component1, MySQLWhereComponent component2) {
+    public MySQLOperationAnd(WhereComponent component1, WhereComponent component2) {
         this.component1 = component1;
         this.component2 = component2;
     }
-    
 }

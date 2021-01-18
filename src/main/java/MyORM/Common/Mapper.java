@@ -146,4 +146,26 @@ public abstract class Mapper {
     public boolean FindColumn(String name, HashMap<String, Object> listColumnValue) {
         return listColumnValue.containsKey(name);
     }
+
+    public <T> HashMap<String, String> getAttributeMappingToTableColumn(Class<T> entityClass) {
+        HashMap<String, String> result = new HashMap<>();
+        Field[] fields = entityClass.getDeclaredFields();
+
+        for (Field field : fields) {
+            Annotation[] attributes = field.getAnnotations();
+            for (Annotation annotation : attributes) {
+                if (annotation.annotationType() == Column.class || annotation.annotationType() == PrimaryKey.class) {
+                    if (annotation.annotationType() == Column.class) {
+                        result.put(field.getName(), field.getAnnotation(Column.class).name());
+                    } else {
+                        result.put(field.getName(), field.getAnnotation(PrimaryKey.class).name());
+                    }
+                }
+                else if (annotation.annotationType() == ManyToOne.class) {
+                    result.put(field.getName(), field.getAnnotation(ManyToOne.class).columnName());
+                }
+            }
+        }
+        return result;
+    }
 }

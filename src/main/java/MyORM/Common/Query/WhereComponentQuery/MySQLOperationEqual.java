@@ -1,12 +1,14 @@
 package MyORM.Common.Query.WhereComponentQuery;
 
-public class MySQLOperationEqual implements MySQLWhereComponent {
+import MyORM.Common.Query.WhereComponent;
+
+public class MySQLOperationEqual implements WhereComponent {
     String objName;
     Object obj;
     
     @Override
     public String getComponentString() {
-        return objName + " > " + obj.toString();
+        return objName + " = " + obj.toString();
     }
 
     public MySQLOperationEqual(String objName, Object obj) {

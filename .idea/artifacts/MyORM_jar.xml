@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="MyORM:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyORM_jar</output-path>
+    <root id="archive" name="MyORM.jar">
+      <element id="module-output" name="MyORM" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/mysql/mysql-connector-java/8.0.20/mysql-connector-java-8.0.20.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-core/2.11.4/jackson-core-2.11.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/codehaus/woodstox/stax2-api/4.2.1/stax2-api-4.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/woodstox/woodstox-core/6.2.3/woodstox-core-6.2.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/dataformat/jackson-dataformat-xml/2.12.1/jackson-dataformat-xml-2.12.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/google/protobuf/protobuf-java/3.6.1/protobuf-java-3.6.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/module/jackson-module-jaxb-annotations/2.12.1/jackson-module-jaxb-annotations-2.12.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-annotations/2.11.4/jackson-annotations-2.11.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/fasterxml/jackson/core/jackson-databind/2.11.4/jackson-databind-2.11.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/jakarta/activation/jakarta.activation-api/1.2.1/jakarta.activation-api-1.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

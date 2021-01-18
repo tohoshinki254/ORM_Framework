@@ -1,6 +1,8 @@
 package MyORM.Common.Query.WhereComponentQuery;
 
-public class MySQLOperationMoreThan implements MySQLWhereComponent{
+import MyORM.Common.Query.WhereComponent;
+
+public class MySQLOperationMoreThan implements WhereComponent {
     String objName;
     Object obj;
 
