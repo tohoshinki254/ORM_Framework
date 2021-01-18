@@ -1,11 +1,6 @@
 package MyORM.MySQL;
 
-import java.lang.reflect.Field;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.List;
-
-import MyORM.Annotations.PrimaryKey;
 
 public class MySQLDelete extends MySQLQuery {
     public <T> MySQLDelete(Connection cnn, String connectionString, Class<T> entityClass, String whereQuery) throws Exception {
